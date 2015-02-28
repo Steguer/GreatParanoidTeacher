@@ -1,7 +1,10 @@
 fileFormatVersion: 2
 guid: ec257222749677e4e90d00897e26f3d1
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: handR_0
+    21300002: handR_1
+    21300004: handR_2
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -25,13 +28,13 @@ TextureImporter:
   maxTextureSize: 1024
   textureSettings:
     filterMode: -1
-    aniso: -1
+    aniso: 16
     mipBias: -1
-    wrapMode: -1
+    wrapMode: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -42,6 +45,36 @@ TextureImporter:
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: handR_0
+      rect:
+        serializedVersion: 2
+        x: 333
+        y: 0
+        width: 153
+        height: 90
+      alignment: 9
+      pivot: {x: .288005739, y: .0703034997}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: handR_1
+      rect:
+        serializedVersion: 2
+        x: 796
+        y: 0
+        width: 163
+        height: 232
+      alignment: 9
+      pivot: {x: .239784285, y: .0429398753}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: handR_2
+      rect:
+        serializedVersion: 2
+        x: 1150
+        y: 0
+        width: 199
+        height: 329
+      alignment: 9
+      pivot: {x: .819712579, y: .0260238424}
+      border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
