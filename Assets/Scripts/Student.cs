@@ -4,21 +4,18 @@ using System.Collections;
 public class Student : MonoBehaviour {
 
 	
-	private Animator animator;
 
-	private bool isClickable = false;
 	public float Timer;
+	public int EnrageCountHit = 10;
+	public float TimerFail;
+	public int incrementStress = 1;
 	
 
-
-	public float TimerFail;
+	private Animator animator;
+	private bool isClickable = false;
 	private float TimerFailCopy;
-
-	public int EnrageCountHit = 10;
-
-
-
 	private int numCheat;
+	private bool enaStress = true;
 
 
 
@@ -76,6 +73,7 @@ public class Student : MonoBehaviour {
 		AnimatorStateInfo currentAnimeState = animator.GetCurrentAnimatorStateInfo(0);
 		if (currentAnimeState.IsName ("StudentIdle")) {
 			isClickable = true;
+			enaStress = true;
 			animator.SetBool ("isFail", false);
 			TimerFail = TimerFailCopy;
 			animator.SetBool ("Enraged",false);
@@ -101,6 +99,10 @@ public class Student : MonoBehaviour {
 		}
 		if (currentAnimeState.IsName ("StudentSucceed")) {
 			//Incrementer le stress
+			if(enaStress) {
+				GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().playerStress += incrementStress;
+				enaStress = false;
+			}
 			animator.SetBool("isFail",false);
 			
 		}
