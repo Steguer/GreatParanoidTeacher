@@ -5,9 +5,11 @@ public class GameManager : MonoBehaviour {
 
 	//********* Public attributs *********
 	public float eventStudentRate = 0.5F;
+	public int redGuyEvent = 10;
 
 	//********* Private attributs *********
 	private float nextStudentEvent = 0.0F;
+	private bool enaRedGuy = true;
 
 	// Use this for initialization
 	void Start () {
@@ -34,13 +36,19 @@ public class GameManager : MonoBehaviour {
 	}
 
 	void eventStudents() {
-		GameObject[] students = GameObject.FindGameObjectsWithTag("Student");
-		int student = Random.Range(0, students.Length);
 		if (Time.time >= nextStudentEvent) {
+			GameObject[] students = GameObject.FindGameObjectsWithTag("Student");
+			int student = Random.Range(0, students.Length);
+
 			nextStudentEvent = Time.time + eventStudentRate;
 
 			GameObject tmp = (GameObject)students.GetValue(student);
-			tmp.GetComponent<Student>().Cheat(false);
+			if(student%2 == 1) {
+				tmp.GetComponent<Student>().Cheat(true);
+			}
+			else {
+				tmp.GetComponent<Student>().Cheat(false);
+			}
 		}
 	}
 }
