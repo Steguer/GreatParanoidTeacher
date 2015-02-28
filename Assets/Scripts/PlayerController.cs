@@ -11,7 +11,6 @@ public class PlayerController : MonoBehaviour {
 	private float nextFire = 0.0F;
 	private CursorMode cursorMode = CursorMode.Auto;
 	private Vector2 hotSpot = Vector2.zero;
-	private RaycastHit hit;
 
 	// Use this for initialization
 	void Start () {
@@ -20,16 +19,18 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		fire ();
 	}
 
-	// Trigger when we click with the mouse
-	void OnMouseDown () {
+	// Manage when player fire
+	private void fire() {
 		// Check if we can fire
 		if (Input.GetButton("Fire1") && Time.time > nextFire) {
 			nextFire = Time.time + fireRate;
 			// Ray tracing
-			if(Physics.Raycast(this.transform.position, Vector3.forward, out hit)) {
+			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+			RaycastHit2D hit = Physics2D.GetRayIntersection(ray,Mathf.Infinity);
+			if(hit.collider != null) {
 				// Check if hit a student
 				if(hit.transform.tag == "Student") {
 					hit.transform.GetComponent<Student>().Hit();
