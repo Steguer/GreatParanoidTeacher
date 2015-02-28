@@ -21,10 +21,11 @@ public class moveCraie : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		speedCarre = 0.05f;
+		speedCarre = 0.04f;
 		speedX = (x_arrivee - x_depart)*speedCarre; 
 		speedY = (y_arrivee - y_depart)*speedCarre;
-		objet.transform.position = new Vector3(x_depart, y_depart, 0);
+
+		objet.transform.position = (new Vector3(x_depart, y_depart, 1f));//;
 		scaleDiff = speedCarre * 0.8f;
 
 	}
@@ -32,7 +33,7 @@ public class moveCraie : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		float d = Mathf.Pow (objet.transform.position.x -x_arrivee, 2) + Mathf.Pow (objet.transform.position.y-y_arrivee, 2);
-		Debug.Log (d);
+		//Debug.Log (d);
 		if (d < dMin) {
 			Destroy(objet);
 		} else {
