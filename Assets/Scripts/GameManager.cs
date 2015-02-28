@@ -1,0 +1,54 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class GameManager : MonoBehaviour {
+
+	//********* Public attributs *********
+	public float eventStudentRate = 0.5F;
+	public int redGuyEvent = 10;
+
+	//********* Private attributs *********
+	private float nextStudentEvent = 0.0F;
+	private bool enaRedGuy = true;
+
+	// Use this for initialization
+	void Start () {
+
+	}
+	
+	// Update is called once per frame
+	void Update () {
+		checkPlayerStess();
+		eventStudents();
+	}
+
+	/*
+	 * Check the player's stress and call the SoundGenerator to change the music according to the stress
+	 */
+	void checkPlayerStess() {
+		GameObject player = GameObject.FindGameObjectWithTag("Player");
+		float stressLimit = player.GetComponent<PlayerController>().stressLimit;
+		float playerStress = player.GetComponent<PlayerController>().playerStress;
+		float stress = playerStress/stressLimit;
+
+		//GameObject soundGenerator = GameObject.FindGameObjectWithTag("SoundGenerator");
+		//soundGenerator.GetComponent<StressBeats>().stressLevel = stress;
+	}
+
+	void eventStudents() {
+		if (Time.time >= nextStudentEvent) {
+			GameObject[] students = GameObject.FindGameObjectsWithTag("Student");
+			int student = Random.Range(0, students.Length);
+
+			nextStudentEvent = Time.time + eventStudentRate;
+
+			GameObject tmp = (GameObject)students.GetValue(student);
+			if(student%2 == 1) {
+				tmp.GetComponent<Student>().Cheat(true);
+			}
+			else {
+				tmp.GetComponent<Student>().Cheat(false);
+			}
+		}
+	}
+}
