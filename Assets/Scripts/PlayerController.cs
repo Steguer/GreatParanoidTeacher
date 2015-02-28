@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour {
 	//********* Public attributs *********
 	public Texture2D cursorTexture;
 	public float fireRate = 0.5F;
+	public int StressLimit = 10;
 
 	//********* Private attributs *********
 	private float nextFire = 0.0F;
@@ -19,23 +20,31 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		fire ();
+		var hit = fire ();
+
 	}
 
-	// Manage when player fire
-	private void fire() {
+	/** 
+	 * Manage when player fire
+	 * 
+	 * return the transform of the entity touch else return null
+	*/ 
+	private Transform fire() {
+		RaycastHit2D hit;
 		// Check if we can fire
 		if (Input.GetButton("Fire1") && Time.time > nextFire) {
 			nextFire = Time.time + fireRate;
 			// Ray tracing
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-			RaycastHit2D hit = Physics2D.GetRayIntersection(ray,Mathf.Infinity);
+			hit = Physics2D.GetRayIntersection(ray,Mathf.Infinity);
 			if(hit.collider != null) {
 				// Check if hit a student
 				if(hit.transform.tag == "Student") {
 					hit.transform.GetComponent<Student>().Hit();
+					return hit.transform;
 				}
 			}
 		}
+		return null;
 	}
 }
