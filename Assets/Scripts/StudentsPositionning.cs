@@ -16,6 +16,8 @@ public class StudentsPositionning : MonoBehaviour {
 	public GameObject startPoint; //GameObject sert de point de départ pour générer les positions des étudiants
 	public float rowDist, colDist; //distance entre deux emplacements sur une ligne, sur une colonne
 	private bool randomPositionning;
+
+	public GameObject objetCraie;
 	
 
 	public int minStudents; //nombre d'étudiants spawnables minimum et maximum
@@ -130,5 +132,17 @@ public class StudentsPositionning : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
+	}
+
+	private void instanciateCraie() {
+		
+		var pos = new Vector2 (Input.mousePosition.x, Input.mousePosition.y);
+		Instantiate (objetCraie, pos, Quaternion.identity);
+		objetCraie.GetComponent<moveCraie> ().x_arrivee = 2;
+		objetCraie.GetComponent<moveCraie> ().y_arrivee = 2;//Input.mousePosition.y;
+		
+		objetCraie.GetComponent<moveCraie> ().x_depart = 0;
+		objetCraie.GetComponent<moveCraie> ().y_depart = 0;
+		
 	}
 }

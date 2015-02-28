@@ -1,18 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class PlayerController : MonoBehaviour {
 
 	//********* Public attributs *********
 	public Texture2D cursorTexture;
-	public float fireRate = 0.5F;
+	public float fireRate = 10.1F;
 	public int StressLimit = 10;
 	public int playerStress = 0;
+	public GameObject objetCraie;
 
 	//********* Private attributs *********
 	private float nextFire = 0.0F;
 	private CursorMode cursorMode = CursorMode.Auto;
 	private Vector2 hotSpot = Vector2.zero;
+	private Vector3 pos;
+
 
 	// Use this for initialization
 	void Start () {
@@ -23,6 +27,13 @@ public class PlayerController : MonoBehaviour {
 	void Update () {
 		var hit = fire ();
 		checkHitState(hit);
+
+		pos = Input.mousePosition;
+		//pos.z = 20f;
+		pos = Camera.main.ScreenToWorldPoint(pos);
+		objetCraie.GetComponent<moveCraie> ().x_arrivee = pos.x;
+		objetCraie.GetComponent<moveCraie> ().y_arrivee = pos.y;//Input.mousePosition.y;
+
 	}
 
 	/** 
@@ -33,7 +44,10 @@ public class PlayerController : MonoBehaviour {
 	private Transform fire() {
 		RaycastHit2D hit;
 		// Check if we can fire
-		if (Input.GetButton("Fire1") && Time.time > nextFire) {
+		if (Input.GetButton("Fire1") && Time.time >= nextFire) {
+
+			instanciateCraie();
+
 			nextFire = Time.time + fireRate;
 			// Ray tracing
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -63,5 +77,13 @@ public class PlayerController : MonoBehaviour {
 				playerStress--;
 			}
 		}
+	}
+
+	private void instanciateCraie() {
+
+		GameObject cr = Instantiate (objetCraie, Input.mousePosition, Quaternion.identity) as GameObject; 
+
+		cr.GetComponent<moveCraie> ().x_depart = -0.1f;
+		cr.GetComponent<moveCraie> ().y_depart = -7;
 	}
 }
