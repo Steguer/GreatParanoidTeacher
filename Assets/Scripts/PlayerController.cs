@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour {
 	public Texture2D cursorTexture;
 	public float fireRate = 0.5F;
 	public int StressLimit = 10;
+	public int playerStress = 0;
 
 	//********* Private attributs *********
 	private float nextFire = 0.0F;
@@ -21,7 +22,7 @@ public class PlayerController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		var hit = fire ();
-
+		checkHitState(hit);
 	}
 
 	/** 
@@ -46,5 +47,21 @@ public class PlayerController : MonoBehaviour {
 			}
 		}
 		return null;
+	}
+
+	/**
+	 * Check the state of the hit. Increase stress if it's in StudentIdle state, decrease if it's in StudentCheating state.
+	 */
+	private void checkHitState(Transform hit) {
+		AnimatorStateInfo currentState;
+		if(hit != null) {
+			currentState = hit.gameObject.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0);
+			if(currentState.IsName("StudentIdle")) {
+				playerStress++;
+			}
+			else if(currentState.IsName("StudentCheating")) {
+				playerStress--;
+			}
+		}
 	}
 }
