@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour {
 	//********* Public attributs *********
 	public Texture2D cursorTexture;
 	public float fireRate = 0.5F;
-	public int StressLimit = 10;
+	public int stressLimit = 10;
 	public int playerStress = 0;
 
 	//********* Private attributs *********
