@@ -92,7 +92,7 @@ public class PlayerController : MonoBehaviour {
 	private void instanciateCraie(float profondeur) {
 
 		GameObject cr = Instantiate (objetCraie, Input.mousePosition, Quaternion.identity) as GameObject; 
-		cr.GetComponent<moveCraie> ().arrivee = new Vector3(pos.x, pos.y, pos.z+profondeur);
+		cr.GetComponent<moveCraie> ().arrivee = new Vector3(pos.x, pos.y, pos.z);
 		Vector3 arm = GameObject.Find ("Main Camera").camera.transform.position;
 		cr.GetComponent<moveCraie> ().depart = new Vector3(arm.x+0.4f, arm.y-0.4f,arm.z);
 	
