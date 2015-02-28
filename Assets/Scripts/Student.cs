@@ -39,6 +39,7 @@ public class Student : MonoBehaviour {
 		}
 		else
 		{
+			animator.SetInteger ("numCheat", 0);
 			animator.SetBool ("Enraged",true);
 		}
 		animator.SetTrigger ("isCheating");
