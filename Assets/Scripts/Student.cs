@@ -11,13 +11,17 @@ public class Student : MonoBehaviour {
 	
 
 
+	public float TimerFail;
+	private float TimerFailCopy;
+	private int numCheat;
 
-	
-	
+
 	// Use this for initialization
 	void Start () {
 	
 		animator = GetComponent<Animator> ();
+	
+		TimerFailCopy = TimerFail;
 	}
 
 	public void Cheat()
@@ -27,20 +31,26 @@ public class Student : MonoBehaviour {
 
 	public void Hit()
 	{
+		animator.SetInteger("numCheat",Random.Range (1, 3));
 		animator.SetTrigger ("isHit");
+
 	}
 	// Update is called once per frame
 	void Update () {
-		if (Timer > 0.0f) {
-			Timer-=Time.deltaTime;
-		}
+		if (TimerFail > 0.0f)
+			TimerFail -= Time.deltaTime;
+		if(TimerFail<=0.0f)
+			animator.SetBool("isFail",true);
+
 
 		AnimatorStateInfo currentAnimeState = animator.GetCurrentAnimatorStateInfo(0);
-		if(currentAnimeState.IsName("StudentIdle"))
-			isClickable=true;
+		if (currentAnimeState.IsName ("StudentIdle")) {
+			isClickable = true;
+			animator.SetBool ("isFail", false);
+			TimerFail = TimerFailCopy;
+		}
 
-
-		if(currentAnimeState.IsName("StudentCheating"))
+		if(currentAnimeState.IsName("StudentCheating1") ||currentAnimeState.IsName("StudentCheating2") ||currentAnimeState.IsName("StudentCheating3"))
 		if(isClickable){
 			//Debug.Log ("StudentCheating");
 		}
@@ -57,6 +67,11 @@ public class Student : MonoBehaviour {
 			//Decementer les Points ?
 			Debug.Log ("StudentInnocentHit");
 			isClickable=false;
+		}
+		if (currentAnimeState.IsName ("StudentSucceed")) {
+			//Incrementer le stress
+			animator.SetBool("isFail",false);
+			
 		}
 
 	}
