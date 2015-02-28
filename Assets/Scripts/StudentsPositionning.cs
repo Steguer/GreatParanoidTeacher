@@ -133,16 +133,5 @@ public class StudentsPositionning : MonoBehaviour {
 	void Update () {
 	
 	}
-
-	private void instanciateCraie() {
-		
-		var pos = new Vector2 (Input.mousePosition.x, Input.mousePosition.y);
-		Instantiate (objetCraie, pos, Quaternion.identity);
-		objetCraie.GetComponent<moveCraie> ().x_arrivee = 2;
-		objetCraie.GetComponent<moveCraie> ().y_arrivee = 2;//Input.mousePosition.y;
-		
-		objetCraie.GetComponent<moveCraie> ().x_depart = 0;
-		objetCraie.GetComponent<moveCraie> ().y_depart = 0;
-		
-	}
+	
 }

@@ -33,8 +33,7 @@ public class PlayerController : MonoBehaviour {
 		pos = Input.mousePosition;
 		//pos.z = 20f;
 		pos = Camera.main.ScreenToWorldPoint(pos);
-		objetCraie.GetComponent<moveCraie> ().x_arrivee = pos.x;
-		objetCraie.GetComponent<moveCraie> ().y_arrivee = pos.y;//Input.mousePosition.y;
+		objetCraie.GetComponent<moveCraie> ().arrivee = pos;
 
 	}
 
@@ -84,8 +83,7 @@ public class PlayerController : MonoBehaviour {
 	private void instanciateCraie() {
 
 		GameObject cr = Instantiate (objetCraie, Input.mousePosition, Quaternion.identity) as GameObject; 
-
-		cr.GetComponent<moveCraie> ().x_depart = -0.1f;
-		cr.GetComponent<moveCraie> ().y_depart = -7;
+		
+		cr.GetComponent<moveCraie> ().depart = new Vector3 (-7, 7, 1f);
 	}
 }
