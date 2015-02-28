@@ -42,6 +42,7 @@ public class StudentsPositionning : MonoBehaviour {
 				GameObject newPosition = Instantiate (positionPrefab) as GameObject;
 				newPosition.transform.position = new Vector3(currentColDist,0,currentRowDist);
 				newPosition.name = "pos "+i+","+j;
+
 				studentPositions.Add (newPosition);
 				currentColDist+=colDist;
 			}
@@ -124,6 +125,8 @@ public class StudentsPositionning : MonoBehaviour {
 
 			//studientClone.transform.parent = studentPositions[i].transform;
 			studientClone.transform.position =  studentPositions[positionsTaken[i]].transform.position;
+			if(studientClone.transform.position.x>0.0f)
+				studientClone.transform.Rotate(new Vector3(0,180,0));
 		}
 
 
