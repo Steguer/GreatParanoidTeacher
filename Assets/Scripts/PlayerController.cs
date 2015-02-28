@@ -14,12 +14,14 @@ public class PlayerController : MonoBehaviour {
 	//********* Private attributs *********
 	private float nextFire = 0.0F;
 	private CursorMode cursorMode = CursorMode.Auto;
-	private Vector2 hotSpot = Vector2.zero;
+	private Vector2 hotSpot;
 	private Vector3 pos;
 
 
 	// Use this for initialization
 	void Start () {
+		var tmp = new Vector2(cursorTexture.width/2, cursorTexture.height/2);
+		hotSpot = Vector2.zero + tmp;
 		Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
 	}
 	

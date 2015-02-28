@@ -13,6 +13,7 @@ public class Student : MonoBehaviour {
 
 	public float TimerFail;
 	private float TimerFailCopy;
+	private int numCheat;
 
 
 	// Use this for initialization
@@ -30,7 +31,9 @@ public class Student : MonoBehaviour {
 
 	public void Hit()
 	{
+		animator.SetInteger("numCheat",Random.Range (1, 3));
 		animator.SetTrigger ("isHit");
+
 	}
 	// Update is called once per frame
 	void Update () {
@@ -47,7 +50,7 @@ public class Student : MonoBehaviour {
 			TimerFail = TimerFailCopy;
 		}
 
-		if(currentAnimeState.IsName("StudentCheating"))
+		if(currentAnimeState.IsName("StudentCheating1") ||currentAnimeState.IsName("StudentCheating2") ||currentAnimeState.IsName("StudentCheating3"))
 		if(isClickable){
 			//Debug.Log ("StudentCheating");
 		}
