@@ -7,7 +7,7 @@ public class Student : MonoBehaviour {
 	private Animator animator;
 
 	private bool isClickable = false;
-	public float Timer = 1.0f;
+	public float Timer;
 	
 
 
