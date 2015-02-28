@@ -51,8 +51,7 @@ public class PlayerController : MonoBehaviour {
 		// Check if we can fire
 		if (Input.GetButton("Fire1") && Time.time >= nextFire) {
 			GameObject.Find ("SoundMaker").GetComponent<SoundMaker>().playArmSwing();
-			
-			
+
 			nextFire = Time.time + fireRate;
 			// Ray tracing
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -67,7 +66,7 @@ public class PlayerController : MonoBehaviour {
 				}
 			}
 			instanciateCraie(null);
-			
+
 		}
 		return null;
 	}

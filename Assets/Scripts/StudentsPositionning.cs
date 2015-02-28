@@ -123,6 +123,11 @@ public class StudentsPositionning : MonoBehaviour {
 			int randomStudentType = Random.Range (0,studentsPrefabs.Count-1);
 			GameObject studientClone = Instantiate(studentsPrefabs[randomStudentType], studentPositions[i].transform.position,Quaternion.identity) as GameObject;
 
+			if(randomStudentType == 0)
+				studientClone.GetComponent<Student>().isMale = true;
+			else
+				studientClone.GetComponent<Student>().isMale = false;
+
 			//studientClone.transform.parent = studentPositions[i].transform;
 			studientClone.transform.position =  studentPositions[positionsTaken[i]].transform.position;
 			if(studientClone.transform.position.x>0.0f)

@@ -8,7 +8,6 @@ public class Student : MonoBehaviour {
 
 	private bool isClickable = false;
 	public float Timer;
-	
 
 
 	public float TimerFail;
@@ -16,9 +15,9 @@ public class Student : MonoBehaviour {
 
 	public int EnrageCountHit = 10;
 
-
-
 	private int numCheat;
+
+	public bool isMale;
 
 
 
@@ -39,6 +38,7 @@ public class Student : MonoBehaviour {
 		}
 		else
 		{
+			animator.SetInteger ("numCheat", 0);
 			animator.SetBool ("Enraged",true);
 		}
 		animator.SetTrigger ("isCheating");
@@ -46,7 +46,7 @@ public class Student : MonoBehaviour {
 
 	public void Hit()
 	{
-
+		GameObject.Find ("SoundMaker").GetComponent<SoundMaker> ().playRandomHurtSound (gameObject);
 		animator.SetTrigger ("isHit");
 		AnimatorStateInfo currentAnimeState = animator.GetCurrentAnimatorStateInfo(0);
 		if (currentAnimeState.IsName ("Enrage") | currentAnimeState.IsName ("EnrageHit")) {
