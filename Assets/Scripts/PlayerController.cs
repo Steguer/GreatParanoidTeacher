@@ -51,18 +51,23 @@ public class PlayerController : MonoBehaviour {
 		// Check if we can fire
 		if (Input.GetButton("Fire1") && Time.time >= nextFire) {
 
-			instanciateCraie();
+
 
 			nextFire = Time.time + fireRate;
 			// Ray tracing
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 			hit = Physics2D.GetRayIntersection(ray,Mathf.Infinity);
+
 			if(hit.collider != null) {
 				// Check if hit a student
 				if(hit.transform.tag == "Student") {
 					hit.transform.GetComponent<Student>().Hit();
+					instanciateCraie(0.0f);
 					return hit.transform;
 				}
+			}
+			else{
+				instanciateCraie(GameObject.Find ("BackGround").transform.position.z);
 			}
 		}
 		return null;
@@ -84,10 +89,10 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
-	private void instanciateCraie() {
+	private void instanciateCraie(float profondeur) {
 
 		GameObject cr = Instantiate (objetCraie, Input.mousePosition, Quaternion.identity) as GameObject; 
-		cr.GetComponent<moveCraie> ().arrivee = pos;
+		cr.GetComponent<moveCraie> ().arrivee = new Vector3(pos.x, pos.y, pos.z+profondeur);
 		Vector3 arm = GameObject.Find ("Main Camera").camera.transform.position;
 		cr.GetComponent<moveCraie> ().depart = new Vector3(arm.x+0.4f, arm.y-0.4f,arm.z);
 	

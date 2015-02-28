@@ -1,7 +1,11 @@
 fileFormatVersion: 2
 guid: b7c543513dee2f9439a02a66e57e0942
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: chalk_0
+    21300002: chalk_1
+    21300004: chalk_2
+    21300006: chalk_3
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -25,13 +29,13 @@ TextureImporter:
   maxTextureSize: 1024
   textureSettings:
     filterMode: -1
-    aniso: -1
+    aniso: 16
     mipBias: -1
-    wrapMode: -1
+    wrapMode: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -42,6 +46,46 @@ TextureImporter:
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: chalk_0
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 50
+        width: 198
+        height: 204
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: chalk_1
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 55
+        width: 204
+        height: 198
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: chalk_2
+      rect:
+        serializedVersion: 2
+        x: 647
+        y: 46
+        width: 198
+        height: 204
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: chalk_3
+      rect:
+        serializedVersion: 2
+        x: 950
+        y: 47
+        width: 204
+        height: 198
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
