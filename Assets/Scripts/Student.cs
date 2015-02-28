@@ -3,21 +3,21 @@ using System.Collections;
 
 public class Student : MonoBehaviour {
 
-	
-	private Animator animator;
-
-	private bool isClickable = false;
-	public float Timer;
-
-
-	public float TimerFail;
-	private float TimerFailCopy;
-
+	//********* Public attributs *********
 	public int EnrageCountHit = 10;
-
+	public int incrementStress = 2;
+	public int decrementStress = 1;
+	public int incrementScore = 200;
+	public int decrementScore = 100;
+	public float TimerFail;
+	public float Timer;
+	
+	//********* Private attributs *********
+	private Animator animator;
+	private bool isClickable = false;
+	private float TimerFailCopy;
 	private int numCheat;
-
-	public bool isMale;
+	private bool enaStress = true;
 
 
 
@@ -38,7 +38,6 @@ public class Student : MonoBehaviour {
 		}
 		else
 		{
-			animator.SetInteger ("numCheat", 0);
 			animator.SetBool ("Enraged",true);
 		}
 		animator.SetTrigger ("isCheating");
@@ -46,7 +45,7 @@ public class Student : MonoBehaviour {
 
 	public void Hit()
 	{
-		GameObject.Find ("SoundMaker").GetComponent<SoundMaker> ().playRandomHurtSound (gameObject);
+
 		animator.SetTrigger ("isHit");
 		AnimatorStateInfo currentAnimeState = animator.GetCurrentAnimatorStateInfo(0);
 		if (currentAnimeState.IsName ("Enrage") | currentAnimeState.IsName ("EnrageHit")) {
@@ -76,6 +75,7 @@ public class Student : MonoBehaviour {
 		AnimatorStateInfo currentAnimeState = animator.GetCurrentAnimatorStateInfo(0);
 		if (currentAnimeState.IsName ("StudentIdle")) {
 			isClickable = true;
+			enaStress = true;
 			animator.SetBool ("isFail", false);
 			TimerFail = TimerFailCopy;
 			animator.SetBool ("Enraged",false);
@@ -89,6 +89,15 @@ public class Student : MonoBehaviour {
 		if(currentAnimeState.IsName("StudentEvilHit"))
 		if(isClickable){
 			//Augmenter les points ?
+			GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().score += incrementScore;
+			var temp = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().playerStress;
+			if(temp - decrementStress < 0) {
+				GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().playerStress = 0;
+			}
+			else {
+				GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().playerStress -= decrementStress;
+			}
+			 
 			Debug.Log ("StudentEvilHit");
 			isClickable=false;
 		}
@@ -96,11 +105,22 @@ public class Student : MonoBehaviour {
 		if(currentAnimeState.IsName("StudentInnocentHit"))
 		if(isClickable){
 			//Decementer les Points ?
+			var tmp = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().score;
+			if(tmp - decrementScore < 0) {
+				GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().score = 0;
+			}
+			else {
+				GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().score -= decrementScore;
+			}
 			Debug.Log ("StudentInnocentHit");
 			isClickable=false;
 		}
 		if (currentAnimeState.IsName ("StudentSucceed")) {
 			//Incrementer le stress
+			if(enaStress) {
+				GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().playerStress += incrementStress;
+				enaStress = false;
+			}
 			animator.SetBool("isFail",false);
 			
 		}

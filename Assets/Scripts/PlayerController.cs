@@ -5,10 +5,11 @@ using System.Collections.Generic;
 public class PlayerController : MonoBehaviour {
 	
 	//********* Public attributs *********
-	public Texture2D cursorTexture;
-	public float fireRate = 0.5F;
 	public int stressLimit = 10;
 	public int playerStress = 0;
+	public int score = 0;
+	public float fireRate = 0.5F;
+	public Texture2D cursorTexture;
 	public GameObject objetCraie;
 	
 	//********* Private attributs *********
@@ -28,17 +29,24 @@ public class PlayerController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		var hit = fire ();
+<<<<<<< HEAD
 		checkHitState(hit);
 		
+=======
+
+>>>>>>> 944a35fc41ea11570939e767c17535985e760899
 		var mousePos = Input.mousePosition;
 		mousePos.z = 10; // select distance = 10 units from the camera
 		pos = GameObject.Find("Main Camera").camera.ScreenToWorldPoint(mousePos);
 		Debug.Log (pos);
+<<<<<<< HEAD
 		//pos = Input.mousePosition;
 		//pos.z = 20f;
 		//pos = Camera.main.ScreenToWorldPoint(pos);
 		//objetCraie.GetComponent<moveCraie> ().arrivee = pos;
 		
+=======
+>>>>>>> 944a35fc41ea11570939e767c17535985e760899
 	}
 	
 	/** 
@@ -72,8 +80,9 @@ public class PlayerController : MonoBehaviour {
 	}
 	
 	/**
-	 * Check the state of the hit. Increase stress if it's in StudentIdle state, decrease if it's in StudentCheating state.
+	 * Manege "craie" entity instanciation
 	 */
+
 	private void checkHitState(Transform hit) {
 		AnimatorStateInfo currentState;
 		if(hit != null) {
@@ -87,6 +96,7 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 	
+
 	private void instanciateCraie(Transform hit) {		
 		GameObject cr = Instantiate (objetCraie, Input.mousePosition, Quaternion.identity) as GameObject; 
 		cr.GetComponent<moveCraie> ().arrivee = new Vector3(pos.x, pos.y, pos.z);
