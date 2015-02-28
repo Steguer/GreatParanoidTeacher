@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour {
 		RaycastHit2D hit;
 		// Check if we can fire
 		if (Input.GetButton("Fire1") && Time.time >= nextFire) {
-
+			GameObject.Find ("SoundMaker").GetComponent<SoundMaker>().playArmSwing();
 
 
 			nextFire = Time.time + fireRate;
@@ -67,6 +67,7 @@ public class PlayerController : MonoBehaviour {
 				}
 			}
 			instanciateCraie(null);
+
 		}
 		return null;
 	}
