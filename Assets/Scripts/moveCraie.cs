@@ -5,10 +5,10 @@ public class moveCraie : MonoBehaviour {
 	
 	public Vector3 depart;
 	public Vector3 arrivee;
-	
+	public GameObject studentTargeted = null;
+	public float speedCarre = 0.05f;
 	
 	private float dMin = 10.10f;
-	private float speedCarre;
 	private float speedX;
 	private float speedY;
 	private float speedZ;
@@ -36,6 +36,9 @@ public class moveCraie : MonoBehaviour {
 				+ Mathf.Pow (transform.position.z-arrivee.z, 2);
 		//Debug.Log (d);
 		if (d < dMin) {
+			if(studentTargeted != null) {
+				studentTargeted.transform.GetComponent<Student>().Hit();
+			}
 			Destroy(gameObject);
 		} else {
 			transform.Translate (new Vector3 ( speedX,  speedY, speedZ));

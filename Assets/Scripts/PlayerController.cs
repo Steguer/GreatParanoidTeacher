@@ -61,14 +61,12 @@ public class PlayerController : MonoBehaviour {
 			if(hit.collider != null) {
 				// Check if hit a student
 				if(hit.transform.tag == "Student") {
-					hit.transform.GetComponent<Student>().Hit();
-					instanciateCraie(0.0f);
+					instanciateCraie(hit.transform);
+
 					return hit.transform;
 				}
 			}
-			else{
-				instanciateCraie(GameObject.Find ("BackGround").transform.position.z);
-			}
+			instanciateCraie(null);
 		}
 		return null;
 	}
@@ -89,12 +87,14 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
-	private void instanciateCraie(float profondeur) {
-
+	private void instanciateCraie(Transform hit) {		
 		GameObject cr = Instantiate (objetCraie, Input.mousePosition, Quaternion.identity) as GameObject; 
 		cr.GetComponent<moveCraie> ().arrivee = new Vector3(pos.x, pos.y, pos.z);
 		Vector3 arm = GameObject.Find ("Main Camera").camera.transform.position;
 		cr.GetComponent<moveCraie> ().depart = new Vector3(arm.x+0.4f, arm.y-0.4f,arm.z);
-	
+
+		if(hit != null) {
+			cr.GetComponent<moveCraie>().studentTargeted = hit.gameObject;
+		}
 	}
 }
