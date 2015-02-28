@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour {
 	private CursorMode cursorMode = CursorMode.Auto;
 	private Vector2 hotSpot;
 	private Vector3 pos;
+	private Animator animator;
 	
 	
 	// Use this for initialization
@@ -24,6 +25,13 @@ public class PlayerController : MonoBehaviour {
 		var tmp = new Vector2(cursorTexture.width/2, cursorTexture.height/2);
 		hotSpot = Vector2.zero + tmp;
 		Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
+
+		Vector3 arm = GameObject.Find ("Main Camera").camera.transform.position;
+		transform.position = new Vector3(arm.x+2f, arm.y-3f,arm.z+5f);
+		transform.Rotate (new Vector3 (0,0, 00));
+		animator = GetComponent<Animator> ();
+		animator.SetBool("isThrowing",true);
+		animator.speed = 0f;
 	}
 	
 	// Update is called once per frame
@@ -48,6 +56,8 @@ public class PlayerController : MonoBehaviour {
 		// Check if we can fire
 		if (Input.GetButton("Fire1") && Time.time >= nextFire) {
 			GameObject.Find ("SoundMaker").GetComponent<SoundMaker>().playArmSwing();
+
+			animator.speed = 0.5f;
 
 			nextFire = Time.time + fireRate;
 			// Ray tracing
