@@ -30,10 +30,14 @@ public class PlayerController : MonoBehaviour {
 		var hit = fire ();
 		checkHitState(hit);
 
-		pos = Input.mousePosition;
+		var mousePos = Input.mousePosition;
+		mousePos.z = 10; // select distance = 10 units from the camera
+		pos = GameObject.Find("Main Camera").camera.ScreenToWorldPoint(mousePos);
+		Debug.Log (pos);
+		//pos = Input.mousePosition;
 		//pos.z = 20f;
-		pos = Camera.main.ScreenToWorldPoint(pos);
-		objetCraie.GetComponent<moveCraie> ().arrivee = pos;
+		//pos = Camera.main.ScreenToWorldPoint(pos);
+		//objetCraie.GetComponent<moveCraie> ().arrivee = pos;
 
 	}
 
@@ -83,7 +87,9 @@ public class PlayerController : MonoBehaviour {
 	private void instanciateCraie() {
 
 		GameObject cr = Instantiate (objetCraie, Input.mousePosition, Quaternion.identity) as GameObject; 
-		
-		cr.GetComponent<moveCraie> ().depart = new Vector3 (-7, 7, 1f);
+		cr.GetComponent<moveCraie> ().arrivee = pos;
+		Vector3 arm = GameObject.Find ("Main Camera").camera.transform.position;
+		cr.GetComponent<moveCraie> ().depart = new Vector3(arm.x+0.4f, arm.y-0.4f,arm.z);
+	
 	}
 }
