@@ -5,9 +5,10 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour {
 
 	//********* Public attributs *********
-	public float eventStudentRate = 0.5F;
+	static public float eventStudentRate = 0.5F;
 	public int redGuyEvent = 10;
 	public float alphaRate = 0.0001f;
+	static public float speedUp = 0.25f;
 
 	//********* Private attributs *********
 	private float nextStudentEvent = 0.0F;
@@ -20,6 +21,8 @@ public class GameManager : MonoBehaviour {
 		Score = 0;
 		NbChalksThrown = 0;
 		NbCheatersTouched = 0;
+		eventStudentRate = 5f;
+		speedUp = 0.5f;
 	}
 	
 	// Update is called once per frame
