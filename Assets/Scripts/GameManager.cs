@@ -31,6 +31,10 @@ public class GameManager : MonoBehaviour {
 		float playerStress = player.GetComponent<PlayerController>().playerStress;
 		float stress = playerStress/stressLimit;
 
+		float transparence = (playerStress * 256) / stressLimit;
+		SpriteRenderer sr = GameObject.Find("frame").GetComponent<SpriteRenderer>();
+		Color tmp = new Color(190f, 190f, 190f, 256f);
+		sr.material.color = tmp;
 		//GameObject soundGenerator = GameObject.FindGameObjectWithTag("SoundGenerator");
 		//soundGenerator.GetComponent<StressBeats>().stressLevel = stress;
 	}
@@ -38,7 +42,7 @@ public class GameManager : MonoBehaviour {
 	void eventStudents() {
 		if (Time.time >= nextStudentEvent) {
 			GameObject[] students = GameObject.FindGameObjectsWithTag("Student");
-			int student = Random.Range(0, students.Length);
+			int student = Random.Range(0, students.Length-1);
 
 			nextStudentEvent = Time.time + eventStudentRate;
 
