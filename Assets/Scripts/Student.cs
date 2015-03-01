@@ -13,7 +13,7 @@ public class Student : MonoBehaviour {
 	public float Timer;
 	
 	//********* Private attributs *********
-	private Animator animator;
+	public Animator animator;
 	private bool isClickable = false;
 	private float TimerFailCopy;
 	private int numCheat;

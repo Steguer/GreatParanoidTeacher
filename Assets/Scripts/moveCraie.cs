@@ -8,6 +8,8 @@ public class moveCraie : MonoBehaviour {
 	public GameObject studentTargeted = null;
 	public float speedCarre = 0.05f;
 	public GameObject bam;
+	public GameObject bonus;
+	public GameObject malus;
 	
 	private float dMin = 10.10f;
 	private float speedX;
@@ -43,8 +45,10 @@ public class moveCraie : MonoBehaviour {
 			GameObject.Find ("SoundMaker").GetComponent<SoundMaker> ().playRandomHitSound (); //son d'impact
 			if(studentTargeted != null) {
 				GameObject bamObject = initBam();
+				GameObject bonusObject = initBonus(checkCheating( studentTargeted));
 				studentTargeted.transform.GetComponent<Student>().Hit();
 				Destroy (bamObject, 0.3f);
+				Destroy (bonusObject, 0.5f);
 			}
 			Destroy(gameObject);
 
@@ -64,4 +68,38 @@ public class moveCraie : MonoBehaviour {
 		return Instantiate (bam,posBam, Quaternion.identity) as GameObject; 
 
 	}
+
+	GameObject initBonus(int isCheating){
+		Vector3 posStudent = studentTargeted.transform.position;
+		Vector3 posBonus = new Vector3(posStudent.x, posStudent.y+1.47f, posStudent.z);
+		bonus.transform.localScale = new Vector3 (0.40f, 0.40f, 0);
+		malus.transform.localScale = new Vector3 (0.40f, 0.40f, 0);
+		if (isCheating == 1) {
+			bonus.GetComponent<points> ().posDepart = posBonus;
+			return Instantiate (bonus, posBonus, Quaternion.identity) as GameObject; 
+		} else if (isCheating == -1) {
+			malus.GetComponent<points> ().posDepart = posBonus;
+			return Instantiate (malus, posBonus, Quaternion.identity) as GameObject; 
+		} else
+			return null;
+
+
+		
+	}
+
+	int checkCheating( GameObject st){
+		AnimatorStateInfo currentAnimeState = st.GetComponent<Student> ().animator.GetCurrentAnimatorStateInfo (0);
+		if (currentAnimeState.IsName ("StudentIdle") 
+			|| currentAnimeState.IsName ("StudentInnocentHit")) {
+			return -1;
+		} else if (currentAnimeState.IsName ("StudentCheating2") 
+			|| currentAnimeState.IsName ("StudentEvilHit")
+		           || currentAnimeState.IsName ("StudentCheating1")
+		           || currentAnimeState.IsName ("StudentCheating3") ) {
+			return 1;
+		} else
+			return 0;
+	}
+			
+
 }

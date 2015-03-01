@@ -26,9 +26,12 @@ public class scoreManager : MonoBehaviour {
 			}
 		}
 		//Change player's text label as his place on the score list
-		for (int i=0; i<list.Count; i++) {
+		int i = 0;
+		while (i<list.Count && i < 10){
 			GameObject.Find ("Player"+(i+1)+"").GetComponent<Text> ().text=list[i]+"";
+			i++;
 		}
+
 
 	}
 
