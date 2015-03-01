@@ -36,6 +36,7 @@ public class moveCraie : MonoBehaviour {
 				+ Mathf.Pow (transform.position.z-arrivee.z, 2);
 		//Debug.Log (d);
 		if (d < dMin) {
+			GameObject.Find ("SoundMaker").GetComponent<SoundMaker> ().playRandomHitSound (); //son d'impact
 			if(studentTargeted != null) {
 				studentTargeted.transform.GetComponent<Student>().Hit();
 			}
