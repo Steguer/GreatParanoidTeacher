@@ -103,7 +103,8 @@ public class Student : MonoBehaviour {
 		if(currentAnimeState.IsName("StudentEvilHit"))
 		if(isClickable){
 			//Augmenter les points ?
-			playerReference.GetComponent<PlayerController>().score += incrementScore;
+			playerReference.GetComponent<PlayerController>().score += incrementScore * playerReference.GetComponent<PlayerController>().combo;
+			playerReference.GetComponent<PlayerController>().combo++;
 			var temp = playerReference.GetComponent<PlayerController>().playerStress;
 			if(temp - decrementStress < 0) {
 				GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().playerStress = 0;
@@ -126,6 +127,7 @@ public class Student : MonoBehaviour {
 			else {
 				GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().score -= decrementScore;
 			}
+			playerReference.GetComponent<PlayerController>().combo = 1;
 			Debug.Log ("StudentInnocentHit");
 			isClickable=false;
 		}
@@ -133,6 +135,7 @@ public class Student : MonoBehaviour {
 			//Incrementer le stress
 			if(enaStress) {
 				playerReference.GetComponent<PlayerController>().playerStress += incrementStress;
+				playerReference.GetComponent<PlayerController>().combo = 1;
 				if(playerReference.GetComponent<PlayerController>().playerStress > playerReference.GetComponent<PlayerController>().stressLimit)
 				{
 					//Si le stress dépasse la limite on le met à la limite
