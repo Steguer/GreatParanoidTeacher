@@ -100,7 +100,7 @@ public class EndGame : MonoBehaviour {
 		{
 			winMusic.Play();
 		}
-
+		saveHighScore();
 	}
 
 	/**
@@ -157,5 +157,40 @@ public class EndGame : MonoBehaviour {
 	public void playStampSound()
 	{
 		stampSound.Play ();
+	}
+	public void saveHighScore(){
+
+		//StreamReader reader = new StreamReader ("./Assets/Scripts/UI/Scores/scores.txt");
+		ArrayList list = new ArrayList();
+		int i = 0;
+		string line;
+
+
+		/*asset = Resources.Load(FileName + ".txt") as TextAsset;
+		writer = new StreamWriter("Resources/" + FileName + ".txt"); // Does this work?
+		writer.WriteLine(appendString);*/
+		bool highscore = false;
+		using (StreamReader reader = new StreamReader("./Assets/Scripts/UI/Scores/scores.txt"))
+		{	
+			while ((line = reader.ReadLine()) != null)
+			{
+				Debug.Log (line+" et i="+i);
+				if((Convert.ToInt32(line) < GameManager.Score || line==null) && !highscore  ){
+					highscore=true;
+					list.Add (GameManager.Score+"");
+				}
+				list.Add(line);
+				i++;
+			}
+			reader.Close ();
+		}
+
+		using (StreamWriter writer = new StreamWriter("./Assets/Scripts/UI/Scores/scores.txt")) {
+			for (i=0; i<list.Count; i++) {
+				writer.WriteLine (list [i]);
+			}
+			writer.Close ();
+		}
+
 	}
 }

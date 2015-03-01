@@ -24,6 +24,7 @@ public class scoreManager : MonoBehaviour {
 			{
 				list.Add(line); // Add to list.
 			}
+			reader.Close();
 		}
 		//Change player's text label as his place on the score list
 		int i = 0;
