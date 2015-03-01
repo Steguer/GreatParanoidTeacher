@@ -5,7 +5,7 @@ using System.Collections;
  * Script qui permet de jouer des "beats" audio en fonction du niveau de stress
  * */
 public class StressBeats : MonoBehaviour {
-	private AudioSource beat1, beat2, beat3, beat4, beat5, currentBeat; //fichiers audio et beat actuel
+	private AudioSource beat0,beat1, beat2, beat3, beat4, beat5, currentBeat; //fichiers audio et beat actuel
 	public float stressLevel; //niveau de stress récupéré (envoyé par le script qui gère le stress)
 	private int sLevel1 = 2, sLevel2 = 4, sLevel3 = 6, sLevel4 = 8, sLevel5 = 9; //seuils de niveaux de stress pour jouer la musique
 	private bool playBeat;
@@ -19,8 +19,9 @@ public class StressBeats : MonoBehaviour {
 		beat3 = GetComponents<AudioSource> () [2];
 		beat4 = GetComponents<AudioSource> () [3];
 		beat5 = GetComponents<AudioSource> () [4];
+		beat0 = GetComponents<AudioSource> () [5];
 
-		currentBeat = beat1;
+		currentBeat = beat0;
 		playBeat = true;
 	
 	}
@@ -35,7 +36,7 @@ public class StressBeats : MonoBehaviour {
 		//Niveau de stress en dessous du premier seuil : pas de beat
 		if (stressLevel < sLevel1) 
 		{
-			playBeat = false;
+			setNewBeat(beat0);
 		}
 
 		//Premier seuil : premier beat
