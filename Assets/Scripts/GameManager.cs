@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour {
 
 		// Display stress to screen
 		float transparence = playerStress / stressLimit;
-		GameObject img=GameObject.Find ("Image");
+/*		GameObject img=GameObject.Find ("Image");
 		Image temp = img.GetComponent<Image> ();
 		Color c = temp.color;
 
@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour {
 		temp.color = c;
 
 		//GameObject soundGenerator = GameObject.FindGameObjectWithTag("SoundGenerator");
-		//soundGenerator.GetComponent<StressBeats>().stressLevel = stress;
+		//soundGenerator.GetComponent<StressBeats>().stressLevel = stress;*/
 	}
 
 	void eventStudents() {
