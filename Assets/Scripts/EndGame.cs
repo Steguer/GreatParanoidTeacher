@@ -35,7 +35,23 @@ public class EndGame : MonoBehaviour {
 		//Affichage de l'image correspondant à la note
 		markImage= GameObject.Find ("MarkImage");
 		loadImages ();
+		if (GameManager.Score < 1000) {
+			note=20;
+		} else if (GameManager.Score < 5000) {
+			note=18;
 
+		}else if (GameManager.Score < 7500) {
+			note=14;
+		}
+		else if (GameManager.Score < 10000) {
+			note=11;
+		}
+		else if (GameManager.Score < 15000) {
+			note=9;
+		}
+		else if (GameManager.Score < 20000) {
+			note=4;
+		}
 		//noteValue.GetComponent<Text>().text = note+"/20";
 		cheaterValue.GetComponent<Text>().text = cheatersKilled+"";
 		shotsValue.GetComponent<Text>().text = shots+"";
