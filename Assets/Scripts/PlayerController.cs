@@ -62,8 +62,6 @@ public class PlayerController : MonoBehaviour {
 		if (Input.GetButton("Fire1") && Time.time >= nextFire) {
 			GameObject.Find ("SoundMaker").GetComponent<SoundMaker>().playArmSwing();
 
-			animator.SetTrigger("Throw");
-
 			nextFire = Time.time + fireRate;
 			// Ray tracing
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
