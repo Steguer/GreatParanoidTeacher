@@ -165,18 +165,23 @@ public class Student : MonoBehaviour {
 
 	void FixCollision2DEnrageBoy()
 	{
+		if(isMale)
+		{
 		BoxCollider2D bx2D = GetComponent<BoxCollider2D>();
 		bx2D.center = new Vector2 (0.2f,0f);
 		bx2D.size = new Vector2 (1f,2.2f);
 		CircleCollider2D c=GetComponent<CircleCollider2D>();
 		c.center= new Vector2(0.3f,1.5f);
 		c.radius=0.5f;
+		}
 	}
 	void ResetCollider2DEnrageBoy()
 	{
-		BoxCollider2D bx2D = GetComponent<BoxCollider2D>();
-		bx2D=Cp;
-		CircleCollider2D c=GetComponent<CircleCollider2D>();
-		 c=C2D;
+		if (isMale) {
+			BoxCollider2D bx2D = GetComponent<BoxCollider2D> ();
+			bx2D = Cp;
+			CircleCollider2D c = GetComponent<CircleCollider2D> ();
+			c = C2D;
+		}
 	}
 }
