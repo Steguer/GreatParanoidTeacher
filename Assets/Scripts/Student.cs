@@ -47,7 +47,6 @@ public class Student : MonoBehaviour {
 		}
 		else
 		{ 
-			ModifCollider2DEnrageMode();
 			animator.SetBool ("EnrageFinished", false);
 			animator.SetTrigger ("Enraged");
 		}
@@ -65,7 +64,6 @@ public class Student : MonoBehaviour {
 			{
 				animator.SetBool("EnrageFinished",true);
 				EnrageCountHit=4;
-				ResetCollider2D();
 			}
 		}
 
@@ -87,7 +85,6 @@ public class Student : MonoBehaviour {
 		
 		AnimatorStateInfo currentAnimeState = animator.GetCurrentAnimatorStateInfo(0);
 		if (currentAnimeState.IsName ("StudentIdle")) {
-			ResetCollider2D();
 			isClickable = true;
 			enaStress = true;
 			animator.SetBool ("isFail", false);
@@ -108,6 +105,7 @@ public class Student : MonoBehaviour {
 			//Augmenter les points ?
 			playerReference.GetComponent<PlayerController>().score += incrementScore * playerReference.GetComponent<PlayerController>().combo;
 			playerReference.GetComponent<PlayerController>().combo++;
+			GameManager.NbCheatersTouched++;
 			var temp = playerReference.GetComponent<PlayerController>().playerStress;
 			if(temp - decrementStress < 0) {
 				GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().playerStress = 0;
@@ -115,16 +113,7 @@ public class Student : MonoBehaviour {
 			else {
 				GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().playerStress -= decrementStress;
 			}
-
-			float eventRate = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<GameManager>().eventStudentRate;
-			float speedUp = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<GameManager>().eventSpeedUp;
-			if(eventRate - speedUp < 0.1) {
-				GameObject.FindGameObjectWithTag("MainCamera").GetComponent<GameManager>().eventStudentRate = 0.1f;
-			}
-			else {
-				GameObject.FindGameObjectWithTag("MainCamera").GetComponent<GameManager>().eventStudentRate -= speedUp;
-			}
-
+			 
 			Debug.Log ("StudentEvilHit");
 			isClickable=false;
 		}
@@ -158,33 +147,6 @@ public class Student : MonoBehaviour {
 			}
 			animator.SetBool("isFail",false);
 			
-		}
-
-	}
-	void ModifCollider2DEnrageMode()
-	{
-		AnimatorStateInfo currentAnimeState = animator.GetCurrentAnimatorStateInfo(0);
-		if ( isMale) {
-			CircleCollider2D c = GetComponent<CircleCollider2D> ();
-			c.center = new Vector2 (0.3f, 1.5f);
-			c.radius = 0.5f;
-
-			BoxCollider2D bx2D = GetComponent<BoxCollider2D> ();
-			bx2D.size = new Vector2 (1.0f, 2.2f);
-			bx2D.center = new Vector2 (0.2f, 0f);
-		} 
-}
-	void ResetCollider2D()
-	{
-		AnimatorStateInfo currentAnimeState = animator.GetCurrentAnimatorStateInfo(0);
-		if (isMale) {
-			CircleCollider2D c = GetComponent<CircleCollider2D> ();
-			c.center = new Vector2 (0f, 1.1f);
-			c.radius = 0.4f;
-			
-			BoxCollider2D bx2D = GetComponent<BoxCollider2D> ();
-			bx2D.size = new Vector2 (1.0f, 2f);
-			bx2D.center = new Vector2 (0.2f, -0.3f);
 		}
 
 	}

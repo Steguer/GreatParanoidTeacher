@@ -10,7 +10,6 @@ public class EndGame : MonoBehaviour {
 	public int shots; //nombre de projectiles lancés
 	private GameObject noteValue, rankValue, cheaterValue, shotsValue, markImage;
 	private AudioSource winMusic, winMusicAverage, loseMusic,stampSound;
-	public float noteForVictory, noteForNormal; //note "minimale" pour jouer la musique de victoire, et la musique victoire normale
 
 	//Liste des rangs (selon score du joueur)
 	public string rankVeryLow,rankLow, rankAverage, rankGood, rankVeryGood, rankPerfect;
@@ -35,31 +34,34 @@ public class EndGame : MonoBehaviour {
 		//Affichage de l'image correspondant à la note
 		markImage= GameObject.Find ("MarkImage");
 		loadImages ();
-		if (GameManager.Score < 1000) {
+		if (GameManager.Score <= 1000) {
 			note=20;
-		} else if (GameManager.Score < 5000) {
+			rankValue.GetComponent<Text>().text = rankVeryLow;
+		} else if (GameManager.Score <= 5000 && GameManager.Score > 1000) {
 			note=18;
+			rankValue.GetComponent<Text>().text = rankLow;
 
-		}else if (GameManager.Score < 7500) {
+		}else if (GameManager.Score <= 7500 && GameManager.Score >5000) {
 			note=14;
+			rankValue.GetComponent<Text>().text = rankAverage;
 		}
-		else if (GameManager.Score < 10000) {
+		else if (GameManager.Score <= 10000 && GameManager.Score > 7500) {
 			note=11;
+			rankValue.GetComponent<Text>().text = rankGood;
 		}
-		else if (GameManager.Score < 15000) {
+		else if (GameManager.Score <= 15000 && GameManager.Score > 10000) {
 			note=9;
+			rankValue.GetComponent<Text>().text = rankVeryGood;
 		}
-		else if (GameManager.Score < 20000) {
+		else if (GameManager.Score > 15000) {
 			note=4;
+			rankValue.GetComponent<Text>().text = rankPerfect;
 		}
 		//noteValue.GetComponent<Text>().text = note+"/20";
-		cheaterValue.GetComponent<Text>().text = "Over 9000 in my cariere";
-		shotsValue.GetComponent<Text>().text = "Not Enough";
+		cheaterValue.GetComponent<Text> ().text = GameManager.NbCheatersTouched+"";
+		shotsValue.GetComponent<Text>().text = GameManager.NbChalksThrown+"";
 
-		//On affiche le rang du joueur en fonction de son score
-		rankValue.GetComponent<Text>().text = calculateRank();
-
-		//Affichage de l'image de la note (A,B,C...)
+		//Affichage de l'image de la note (A,B,C...) des étudiants
 		if(note <= veryLowNote)
 			markImage.GetComponent<Image>().sprite = images[4];
 
@@ -75,19 +77,26 @@ public class EndGame : MonoBehaviour {
 		else if(note > veryGoodNote && note <= perfectNote)
 			markImage.GetComponent<Image>().sprite = images[0];
 
+		
+		//On affiche le rang du joueur en fonction de son score
+		//rankValue.GetComponent<Text>().text = calculateRank();
+
 		markImage.GetComponent<Image> ().enabled = true;
 
 		//Lecture des musiques
 
-		if (note < noteForNormal) {
+		//Si la moyenne de la classe > 10 : musique défaite
+		if (note > lowNote) {
 			loseMusic.Play ();
 		}
-		//On joue la musique de victoire si on est au dessus d'une certaine note
-		else if (note >= noteForNormal && note < noteForVictory) 
+		//Moyenne de la classe <= 10 && > 5 : musique succès normal
+		else if (note <= lowNote && note > veryLowNote) 
 		{
 			winMusicAverage.Play ();
 		} 
-		else if (note >= noteForVictory) 
+
+		//Moyenne de la classe <= 5 : musique victoire
+		else if (note <= veryLowNote) 
 		{
 			winMusic.Play();
 		}
@@ -128,20 +137,21 @@ public class EndGame : MonoBehaviour {
 	 * */
 	string calculateRank()
 	{
-		if (note > 0 && note <= veryLowNote)
-			return rankVeryLow;
-		else if (note > veryLowNote && note <= lowNote)
-			return rankLow;
-		else if (note > lowNote && note <= avgNote) 
-			return rankAverage;
-		else if (note > avgNote && note <= goodNote)
+		//veryLow = perfectRank, perfectNote = veryLowRank;
+		if (note <= veryLowNote)
+			return rankPerfect;
+		else if (note > veryLowNote && note < lowNote)
+			return rankVeryGood;
+		else if (note >= lowNote && note <= goodNote)
 			return rankGood;
 		else if (note > goodNote && note <= veryGoodNote)
-			return rankVeryGood;
-		else if (note > veryGoodNote && note <= perfectNote)
-			return rankPerfect;
+			return rankAverage;
+		else if (note > veryGoodNote && note < perfectNote)
+			return rankLow;
+		else if (note >= perfectNote)
+			return rankVeryLow;
 		else
-			return "oops!";
+			return "oops";
 	}
 
 	public void playStampSound()

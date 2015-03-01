@@ -8,17 +8,18 @@ public class GameManager : MonoBehaviour {
 	public float eventStudentRate = 0.5F;
 	public int redGuyEvent = 10;
 	public float alphaRate = 0.0001f;
-	public float eventSpeedUp = 0.25f;
 
 	//********* Private attributs *********
 	private float nextStudentEvent = 0.0F;
 	private bool enaRedGuy = true;
 
-	public static int Score ;
+	public static int Score,NbChalksThrown, NbCheatersTouched;
 
 	// Use this for initialization
 	void Start () {
 		Score = 0;
+		NbChalksThrown = 0;
+		NbCheatersTouched = 0;
 	}
 	
 	// Update is called once per frame

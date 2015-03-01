@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour {
 	public int stressLimit = 10;
 	public int playerStress = 0;
 	public int score = 0;
+	public int nbChalksThrown = 0;
 	public float fireRate = 0.5F;
 	public Texture2D cursorTexture;
 	public GameObject objetCraie;
@@ -61,7 +62,9 @@ public class PlayerController : MonoBehaviour {
 		// Check if we can fire
 		if (Input.GetButton("Fire1") && Time.time >= nextFire) {
 			GameObject.Find ("SoundMaker").GetComponent<SoundMaker>().playArmSwing();
-
+			nbChalksThrown++;
+			GameManager.NbChalksThrown = nbChalksThrown;
+			
 			animator.SetTrigger("Throw");
 
 			nextFire = Time.time + fireRate;
