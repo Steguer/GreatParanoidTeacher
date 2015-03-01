@@ -22,11 +22,14 @@ public class Student : MonoBehaviour {
 	public bool isLeftAnimationDisabled = false;
 
 	public bool isMale;
-
+	private BoxCollider2D Cp;
+	private CircleCollider2D C2D;
 
 	// Use this for initialization
 	void Start () {
 	
+		Cp =GetComponent<BoxCollider2D>();
+		C2D = GetComponent<CircleCollider2D> ();
 		animator = GetComponent<Animator> ();
 	
 		TimerFailCopy = TimerFail;
@@ -47,6 +50,7 @@ public class Student : MonoBehaviour {
 		}
 		else
 		{ 
+			FixCollision2DEnrageBoy();
 			animator.SetBool ("EnrageFinished", false);
 			animator.SetTrigger ("Enraged");
 		}
@@ -85,6 +89,7 @@ public class Student : MonoBehaviour {
 		
 		AnimatorStateInfo currentAnimeState = animator.GetCurrentAnimatorStateInfo(0);
 		if (currentAnimeState.IsName ("StudentIdle")) {
+			ResetCollider2DEnrageBoy();
 			isClickable = true;
 			enaStress = true;
 			animator.SetBool ("isFail", false);
@@ -149,5 +154,22 @@ public class Student : MonoBehaviour {
 			
 		}
 
+	}
+
+	void FixCollision2DEnrageBoy()
+	{
+		BoxCollider2D bx2D = GetComponent<BoxCollider2D>();
+		bx2D.center = new Vector2 (0.2f,0f);
+		bx2D.size = new Vector2 (1f,2.2f);
+		CircleCollider2D c=GetComponent<CircleCollider2D>();
+		c.center= new Vector2(0.3f,1.5f);
+		c.radius=0.5f;
+	}
+	void ResetCollider2DEnrageBoy()
+	{
+		BoxCollider2D bx2D = GetComponent<BoxCollider2D>();
+		bx2D=Cp;
+		CircleCollider2D c=GetComponent<CircleCollider2D>();
+		 c=C2D;
 	}
 }
