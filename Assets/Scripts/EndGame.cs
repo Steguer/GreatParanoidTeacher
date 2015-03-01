@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using System;
+using System.IO;
 
 public class EndGame : MonoBehaviour {
 	public float note; //note
