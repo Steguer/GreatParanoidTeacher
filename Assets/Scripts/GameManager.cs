@@ -13,9 +13,11 @@ public class GameManager : MonoBehaviour {
 	private float nextStudentEvent = 0.0F;
 	private bool enaRedGuy = true;
 
+	public static int Score ;
+
 	// Use this for initialization
 	void Start () {
-
+		Score = 0;
 	}
 	
 	// Update is called once per frame

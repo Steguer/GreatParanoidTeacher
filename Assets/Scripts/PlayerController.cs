@@ -36,10 +36,12 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
 		var hit = fire ();
 		var mousePos = Input.mousePosition;
 		mousePos.z = 10; // select distance = 10 units from the camera
 		pos = GameObject.Find("Main Camera").camera.ScreenToWorldPoint(mousePos);
+		GameManager.Score = score;
 		//Debug.Log (pos);
 
 
