@@ -72,7 +72,7 @@ public class PlayerController : MonoBehaviour {
 				}
 			}
 			instanciateCraie(null);
-			animator.ResetTrigger("Throw");
+			//animator.ResetTrigger("Throw");
 
 		}
 		return null;

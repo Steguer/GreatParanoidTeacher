@@ -17,7 +17,7 @@ public class moveCraie : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-		speedCarre = 0.02f;
+		speedCarre = 0.04f;
 		speedX = (arrivee.x - depart.x)*speedCarre; 
 		speedY = (arrivee.y - depart.y)*speedCarre;
 		speedZ = (arrivee.z - depart.z)*speedCarre;
