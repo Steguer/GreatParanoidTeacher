@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
@@ -20,6 +21,12 @@ public class GameManager : MonoBehaviour {
 	void Update () {
 		checkPlayerStess();
 		eventStudents();
+		GameObject img=GameObject.Find ("Image");
+		Image temp = img.GetComponent<Image> ();
+		//temp.color = new Color (temp.color.r, temp.color.g, temp.color.b, temp.color.a + 100);
+		Color c = temp.color;
+		c.a += 0.001f;
+		temp.color = c;
 	}
 
 	/*
