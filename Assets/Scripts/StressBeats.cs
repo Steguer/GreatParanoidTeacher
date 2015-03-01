@@ -86,6 +86,7 @@ public class StressBeats : MonoBehaviour {
 			{
 				currentBeat = beatToPlay;
 				currentBeat.loop = true;
+				currentBeat.volume = 0.3f;
 				if(playBeat && !currentBeat.isPlaying)
 					currentBeat.Play ();
 			}

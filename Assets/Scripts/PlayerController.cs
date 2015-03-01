@@ -87,7 +87,8 @@ public class PlayerController : MonoBehaviour {
 		if(hit != null) {
 			currentState = hit.gameObject.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0);
 			if(currentState.IsName("StudentIdle")) {
-				playerStress++;
+				if(playerStress > stressLimit)
+					playerStress = stressLimit;
 			}
 			else if(currentState.IsName("StudentCheating")) {
 				playerStress--;

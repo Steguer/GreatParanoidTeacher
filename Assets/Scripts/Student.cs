@@ -66,6 +66,7 @@ public class Student : MonoBehaviour {
 
 	void CheckStates ()
 	{
+		GameObject playerReference = GameObject.FindGameObjectWithTag ("Player");
 		if (TimerFail > 0.0f)
 			TimerFail -= Time.deltaTime;
 		if(TimerFail<=0.0f)
@@ -89,8 +90,8 @@ public class Student : MonoBehaviour {
 		if(currentAnimeState.IsName("StudentEvilHit"))
 		if(isClickable){
 			//Augmenter les points ?
-			GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().score += incrementScore;
-			var temp = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().playerStress;
+			playerReference.GetComponent<PlayerController>().score += incrementScore;
+			var temp = playerReference.GetComponent<PlayerController>().playerStress;
 			if(temp - decrementStress < 0) {
 				GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().playerStress = 0;
 			}
@@ -118,7 +119,13 @@ public class Student : MonoBehaviour {
 		if (currentAnimeState.IsName ("StudentSucceed")) {
 			//Incrementer le stress
 			if(enaStress) {
-				GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().playerStress += incrementStress;
+				playerReference.GetComponent<PlayerController>().playerStress += incrementStress;
+				if(playerReference.GetComponent<PlayerController>().playerStress > playerReference.GetComponent<PlayerController>().stressLimit)
+				{
+					//Si le stress dépasse la limite on le met à la limite
+					playerReference.GetComponent<PlayerController>().playerStress = playerReference.GetComponent<PlayerController>().stressLimit;
+				}
+
 				enaStress = false;
 			}
 			animator.SetBool("isFail",false);
