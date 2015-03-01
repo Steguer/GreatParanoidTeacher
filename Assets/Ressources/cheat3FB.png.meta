@@ -52,8 +52,8 @@ TextureImporter:
         y: 13
         width: 195
         height: 312
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .509230793, y: .459615409}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: cheat3FB_1
       rect:
@@ -62,8 +62,8 @@ TextureImporter:
         y: 13
         width: 195
         height: 305
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .509230733, y: .470163971}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

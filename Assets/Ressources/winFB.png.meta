@@ -51,8 +51,8 @@ TextureImporter:
         y: 13
         width: 200
         height: 315
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 9
+      pivot: {x: .518999994, y: .455238134}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: winFB_1
       rect:
@@ -61,8 +61,8 @@ TextureImporter:
         y: 13
         width: 200
         height: 315
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 9
+      pivot: {x: .516499937, y: .455238134}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
