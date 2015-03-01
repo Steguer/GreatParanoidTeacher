@@ -50,10 +50,7 @@ public class StudentsPositionning : MonoBehaviour {
 			currentRowDist+=rowDist;
 			currentColDist = startPoint.transform.position.x + colDist;
 		}
-
-
-
-
+		
 		/** Génération aléatoire des étudiants **/
 		positionsTaken = new List<int> ();		
 		students = new List<GameObject> ();
