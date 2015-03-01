@@ -53,8 +53,8 @@ public class EndGame : MonoBehaviour {
 			note=4;
 		}
 		//noteValue.GetComponent<Text>().text = note+"/20";
-		cheaterValue.GetComponent<Text>().text = cheatersKilled+"";
-		shotsValue.GetComponent<Text>().text = shots+"";
+		cheaterValue.GetComponent<Text>().text = "Over 9000 in my cariere";
+		shotsValue.GetComponent<Text>().text = "Not Enough";
 
 		//On affiche le rang du joueur en fonction de son score
 		rankValue.GetComponent<Text>().text = calculateRank();
