@@ -48,7 +48,7 @@ public class Student : MonoBehaviour {
 		GameObject.Find ("SoundMaker").GetComponent<SoundMaker> ().playRandomHurtSound (gameObject);
 		animator.SetTrigger ("isHit");
 		AnimatorStateInfo currentAnimeState = animator.GetCurrentAnimatorStateInfo(0);
-		if (currentAnimeState.IsName ("Enrage") | currentAnimeState.IsName ("EnrageHit")) {
+		if (currentAnimeState.IsName ("Enrage") || currentAnimeState.IsName ("EnrageHit")) {
 			EnrageCountHit--;
 			if(EnrageCountHit<=0)
 			{
