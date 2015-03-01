@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour {
 	public float fireRate = 0.5F;
 	public Texture2D cursorTexture;
 	public GameObject objetCraie;
+	public GameObject bam;
 	
 	//********* Private attributs *********
 	private float nextFire = 0.0F;
@@ -39,7 +40,7 @@ public class PlayerController : MonoBehaviour {
 		var mousePos = Input.mousePosition;
 		mousePos.z = 10; // select distance = 10 units from the camera
 		pos = GameObject.Find("Main Camera").camera.ScreenToWorldPoint(mousePos);
-		Debug.Log (pos);
+		//Debug.Log (pos);
 
 
 	}
@@ -87,6 +88,7 @@ public class PlayerController : MonoBehaviour {
 		
 		if(hit != null) {
 			cr.GetComponent<moveCraie>().studentTargeted = hit.gameObject;
+			cr.GetComponent<moveCraie>().bam = bam;
 		}
 	}
 }

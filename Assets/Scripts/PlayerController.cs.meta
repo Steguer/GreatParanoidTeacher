@@ -2,7 +2,10 @@ fileFormatVersion: 2
 guid: 6b09e657475bea64ca98f8329c3b2205
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - cursorTexture: {instanceID: 0}
+  - objetCraie: {instanceID: 0}
+  - bam: {fileID: 186304, guid: 208a0f65bb8b78e44ae7bfa7d13954fd, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
