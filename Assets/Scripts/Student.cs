@@ -47,6 +47,7 @@ public class Student : MonoBehaviour {
 		}
 		else
 		{ 
+			ModifCollider2DEnrageMode();
 			animator.SetBool ("EnrageFinished", false);
 			animator.SetTrigger ("Enraged");
 		}
@@ -64,6 +65,7 @@ public class Student : MonoBehaviour {
 			{
 				animator.SetBool("EnrageFinished",true);
 				EnrageCountHit=4;
+				ResetCollider2D();
 			}
 		}
 
@@ -85,6 +87,7 @@ public class Student : MonoBehaviour {
 		
 		AnimatorStateInfo currentAnimeState = animator.GetCurrentAnimatorStateInfo(0);
 		if (currentAnimeState.IsName ("StudentIdle")) {
+			ResetCollider2D();
 			isClickable = true;
 			enaStress = true;
 			animator.SetBool ("isFail", false);
@@ -146,6 +149,33 @@ public class Student : MonoBehaviour {
 			}
 			animator.SetBool("isFail",false);
 			
+		}
+
+	}
+	void ModifCollider2DEnrageMode()
+	{
+		AnimatorStateInfo currentAnimeState = animator.GetCurrentAnimatorStateInfo(0);
+		if ( isMale) {
+			CircleCollider2D c = GetComponent<CircleCollider2D> ();
+			c.center = new Vector2 (0.3f, 1.5f);
+			c.radius = 0.5f;
+
+			BoxCollider2D bx2D = GetComponent<BoxCollider2D> ();
+			bx2D.size = new Vector2 (1.0f, 2.2f);
+			bx2D.center = new Vector2 (0.2f, 0f);
+		} 
+}
+	void ResetCollider2D()
+	{
+		AnimatorStateInfo currentAnimeState = animator.GetCurrentAnimatorStateInfo(0);
+		if (isMale) {
+			CircleCollider2D c = GetComponent<CircleCollider2D> ();
+			c.center = new Vector2 (0f, 1.1f);
+			c.radius = 0.4f;
+			
+			BoxCollider2D bx2D = GetComponent<BoxCollider2D> ();
+			bx2D.size = new Vector2 (1.0f, 2f);
+			bx2D.center = new Vector2 (0.2f, -0.3f);
 		}
 
 	}
