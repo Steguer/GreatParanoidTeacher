@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour {
 	public GameObject objetCraie;
 	public GameObject bam;
 	public int combo = 1;
+	public GameObject bonus;
+	public GameObject malus;
 	
 	//********* Private attributs *********
 	private float nextFire = 0.0F;
@@ -91,6 +93,8 @@ public class PlayerController : MonoBehaviour {
 		if(hit != null) {
 			cr.GetComponent<moveCraie>().studentTargeted = hit.gameObject;
 			cr.GetComponent<moveCraie>().bam = bam;
+			cr.GetComponent<moveCraie>().bonus = bonus;
+			cr.GetComponent<moveCraie>().malus = malus;
 		}
 	}
 }

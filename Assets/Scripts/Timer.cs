@@ -6,6 +6,7 @@ public class Timer : MonoBehaviour {
 	public float minutes, seconds; //durée de la partie
 	private float milliseconds;
 	private bool runTimer;
+	float timeElapsed, elapsedMins, elapsedSecs;
 
 	// Use this for initialization
 	void Start () {
@@ -16,8 +17,23 @@ public class Timer : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
+		if (runTimer) 
+		{
+			timeElapsed += Time.deltaTime;
+			System.TimeSpan t = System.TimeSpan.FromSeconds(timeElapsed);
+			Text tex = this.GetComponent<Text>();
+			tex.text = string.Format("{0:D2}:{1:D2}", t.Minutes, t.Seconds);
+		}
 
-		//Temps écoulé : fin de la partie
+
+
+
+		//elapsedMins = Mathf.FloorToInt(timeElapsed / 60);
+		//elapsedSecs = Mathf.FloorToInt(timeElapsed -elapsedMins % 60);
+
+
+
+		/*//Temps écoulé : fin de la partie
 		if (runTimer && minutes <= 0 && seconds <= 0 && milliseconds <= 0) 
 		{
 			runTimer = false;
@@ -42,21 +58,13 @@ public class Timer : MonoBehaviour {
 			
 		}
 		
-		milliseconds -= Time.deltaTime * 100;
+		milliseconds -= Time.deltaTime * 100; */
 		
 		if (runTimer) 
 		{
-			if (seconds < 10) 
-			{
-				Text t = this.GetComponent<Text>();
-				t.text = string.Format ("{0}:0{1}", minutes, seconds);
-			}
-			
-			else
-			{
-				Text t = this.GetComponent<Text>();
-				t.text = string.Format ("{0}:{1}", minutes, seconds);
-			}
+
+				//Text t = this.GetComponent<Text>();
+				//t.text = string.Format("{0:0}:{1:00}", elapsedMins, elapsedSecs);
 				
 		}
 	}
