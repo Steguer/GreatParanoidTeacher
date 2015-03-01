@@ -112,7 +112,16 @@ public class Student : MonoBehaviour {
 			else {
 				GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().playerStress -= decrementStress;
 			}
-			 
+
+			float eventRate = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<GameManager>().eventStudentRate;
+			float speedUp = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<GameManager>().eventSpeedUp;
+			if(eventRate - speedUp < 0.1) {
+				GameObject.FindGameObjectWithTag("MainCamera").GetComponent<GameManager>().eventStudentRate = 0.1f;
+			}
+			else {
+				GameObject.FindGameObjectWithTag("MainCamera").GetComponent<GameManager>().eventStudentRate -= speedUp;
+			}
+
 			Debug.Log ("StudentEvilHit");
 			isClickable=false;
 		}
