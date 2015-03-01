@@ -4,7 +4,7 @@ using System.Collections;
 public class Student : MonoBehaviour {
 
 	//********* Public attributs *********
-	public int EnrageCountHit = 10;
+	public int EnrageCountHit = 4;
 	public int incrementStress = 2;
 	public int decrementStress = 1;
 	public int incrementScore = 200;
@@ -18,6 +18,8 @@ public class Student : MonoBehaviour {
 	private float TimerFailCopy;
 	private int numCheat;
 	private bool enaStress = true;
+
+	public bool isLeftAnimationDisabled = false;
 
 	public bool isMale;
 
@@ -34,13 +36,21 @@ public class Student : MonoBehaviour {
 	public void Cheat(bool EnrageMode)
 	{
 		if (!EnrageMode) {
-			animator.SetInteger ("numCheat", Random.Range (1, 3));
+			int i;
+			do
+			{
+				i= Random.Range (1,4);
+			}
+			while(isLeftAnimationDisabled==true && i==1);
+			animator.SetInteger ("numCheat", i);
+			animator.SetTrigger ("isCheating");
 		}
 		else
-		{
-			animator.SetBool ("Enraged",true);
+		{ 
+			animator.SetBool ("EnrageFinished", false);
+			animator.SetTrigger ("Enraged");
 		}
-		animator.SetTrigger ("isCheating");
+
 	}
 
 	public void Hit()
@@ -52,8 +62,8 @@ public class Student : MonoBehaviour {
 			EnrageCountHit--;
 			if(EnrageCountHit<=0)
 			{
-				animator.SetBool("Enrage",false);
-				EnrageCountHit=10;
+				animator.SetBool("EnrageFinished",true);
+				EnrageCountHit=4;
 			}
 		}
 
@@ -80,11 +90,14 @@ public class Student : MonoBehaviour {
 			animator.SetBool ("isFail", false);
 			TimerFail = TimerFailCopy;
 			animator.SetBool ("Enraged",false);
+			CircleCollider2D c=GetComponent<CircleCollider2D>();
+			c.center= new Vector2(0f,c.center.y);
 		}
 		
-		if(currentAnimeState.IsName("StudentCheating1") ||currentAnimeState.IsName("StudentCheating2") ||currentAnimeState.IsName("StudentCheating3"))
+		if(currentAnimeState.IsName("StudentCheating2") )
 		if(isClickable){
-			//Debug.Log ("StudentCheating");
+			CircleCollider2D c=GetComponent<CircleCollider2D>();
+			c.center= new Vector2(0.5f,c.center.y);
 		}
 		
 		if(currentAnimeState.IsName("StudentEvilHit"))
