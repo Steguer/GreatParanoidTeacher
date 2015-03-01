@@ -19,7 +19,7 @@ public class Student : MonoBehaviour {
 	private int numCheat;
 	private bool enaStress = true;
 
-
+	public bool isMale;
 
 
 	// Use this for initialization
