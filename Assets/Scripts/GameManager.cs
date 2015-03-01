@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour {
 	public float eventStudentRate = 0.5F;
 	public int redGuyEvent = 10;
 	public float alphaRate = 0.0001f;
+	public float eventSpeedUp = 0.25f;
 
 	//********* Private attributs *********
 	private float nextStudentEvent = 0.0F;
