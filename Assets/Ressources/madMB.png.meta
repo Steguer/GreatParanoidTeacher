@@ -52,8 +52,8 @@ TextureImporter:
         y: 13
         width: 195
         height: 336
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .510769188, y: .427083373}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: madMB_1
       rect:
@@ -62,8 +62,8 @@ TextureImporter:
         y: 13
         width: 195
         height: 330
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .511282086, y: .434545487}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

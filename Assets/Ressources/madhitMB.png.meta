@@ -50,8 +50,8 @@ TextureImporter:
         y: 0
         width: 253
         height: 379
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 9
+      pivot: {x: .397628427, y: .41292879}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: 
       rect:
@@ -60,8 +60,8 @@ TextureImporter:
         y: 0
         width: 253
         height: 379
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 9
+      pivot: {x: .397233188, y: .41319263}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
