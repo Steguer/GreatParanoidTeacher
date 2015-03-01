@@ -6,7 +6,8 @@ public class Endmenu : MonoBehaviour {
 	private Button rButton, qButton;
 	private AudioSource clickS;
 	public AudioClip clickSound;
-	private string playLevel = "test_intégration_1", returnMenu = "test_mainMenu";
+	public string playLevel = "SceneAlaMain1";
+	public string returnMenu = "test_mainMenu";
 
 	// Use this for initialization
 	void Start () {

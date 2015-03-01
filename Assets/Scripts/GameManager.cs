@@ -20,14 +20,20 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		checkPlayerStess();
 		eventStudents();
+		var stress = checkPlayerStess();
+		GameObject player = GameObject.FindGameObjectWithTag("Player");
+		float stressLimit = player.GetComponent<PlayerController>().stressLimit;
+
+		if (stress >= stressLimit) {
+			Application.LoadLevel("gameOverScene");
+		}
 	}
 
 	/*
 	 * Check the player's stress and call the SoundGenerator to change the music according to the stress
 	 */
-	void checkPlayerStess() {
+	public float checkPlayerStess() {
 		GameObject player = GameObject.FindGameObjectWithTag("Player");
 		float stressLimit = player.GetComponent<PlayerController>().stressLimit;
 		float playerStress = player.GetComponent<PlayerController>().playerStress;
@@ -35,7 +41,7 @@ public class GameManager : MonoBehaviour {
 
 		// Display stress to screen
 		float transparence = playerStress / stressLimit;
-/*		GameObject img=GameObject.Find ("Image");
+		GameObject img=GameObject.Find ("Image");
 		Image temp = img.GetComponent<Image> ();
 		Color c = temp.color;
 
@@ -48,6 +54,7 @@ public class GameManager : MonoBehaviour {
 
 		temp.color = c;
 
+		return playerStress;
 		//GameObject soundGenerator = GameObject.FindGameObjectWithTag("SoundGenerator");
 		//soundGenerator.GetComponent<StressBeats>().stressLevel = stress;*/
 	}

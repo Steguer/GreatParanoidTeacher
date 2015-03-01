@@ -5,7 +5,7 @@ using System.Collections;
 public class MainMenu : MonoBehaviour {
 	
 	private Button pButton, qButton, sButton, tButton;
-	private string playLevel = "test_intégration_1", scoreLevel="test_score", tutoLevel ="test_tuto";
+	private string playLevel = "SceneAlaMain1", scoreLevel="test_score", tutoLevel ="tuto";
 	public AudioClip clickSound, hoverSound, music;
 	private AudioSource clickS, hoverS, menuMusic;
 
@@ -64,7 +64,7 @@ public class MainMenu : MonoBehaviour {
 	 * */
 	public void tButtonListener(){
 		clickS.Play ();
-		//Application.LoadLevel (tutoLevel);
+		Application.LoadLevel (tutoLevel);
 	}
 
 
