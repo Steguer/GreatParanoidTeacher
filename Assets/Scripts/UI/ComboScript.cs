@@ -12,6 +12,11 @@ public class ComboScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		Text t = this.GetComponent<Text>();
-		t.text = "x" + (GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().combo).ToString();
+		try{
+		int combo = GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerController> ().combo;
+		t.text = "x" + combo;
+		}catch (System.NullReferenceException e)
+		{
+		}
 	}
 }
