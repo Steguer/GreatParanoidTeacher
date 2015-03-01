@@ -56,7 +56,7 @@ public class MainMenu : MonoBehaviour {
 	 * */
 	public void sButtonListener(){
 		clickS.Play ();
-		//Application.LoadLevel (scoreLevel);
+		Application.LoadLevel (scoreLevel);
 	}
 
 	/**
