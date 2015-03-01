@@ -30,14 +30,12 @@ public class PlayerController : MonoBehaviour {
 		transform.position = new Vector3(arm.x+2f, arm.y-3f,arm.z+5f);
 		transform.Rotate (new Vector3 (0,0, 00));
 		animator = GetComponent<Animator> ();
-		animator.SetBool("isThrowing",true);
-		animator.speed = 0f;
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		var hit = fire ();
-		checkHitState(hit);
 		var mousePos = Input.mousePosition;
 		mousePos.z = 10; // select distance = 10 units from the camera
 		pos = GameObject.Find("Main Camera").camera.ScreenToWorldPoint(mousePos);
@@ -53,11 +51,12 @@ public class PlayerController : MonoBehaviour {
 	*/ 
 	private Transform fire() {
 		RaycastHit2D hit;
+
 		// Check if we can fire
 		if (Input.GetButton("Fire1") && Time.time >= nextFire) {
 			GameObject.Find ("SoundMaker").GetComponent<SoundMaker>().playArmSwing();
 
-			animator.speed = 0.5f;
+			animator.SetTrigger("Throw");
 
 			nextFire = Time.time + fireRate;
 			// Ray tracing
@@ -73,27 +72,10 @@ public class PlayerController : MonoBehaviour {
 				}
 			}
 			instanciateCraie(null);
+			animator.ResetTrigger("Throw");
 
 		}
 		return null;
-	}
-	
-	/**
-	 * Manege "craie" entity instanciation
-	 */
-
-	private void checkHitState(Transform hit) {
-		AnimatorStateInfo currentState;
-		if(hit != null) {
-			currentState = hit.gameObject.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0);
-			if(currentState.IsName("StudentIdle")) {
-				if(playerStress > stressLimit)
-					playerStress = stressLimit;
-			}
-			else if(currentState.IsName("StudentCheating")) {
-				playerStress--;
-			}
-		}
 	}
 	
 
