@@ -1,9 +1,7 @@
 fileFormatVersion: 2
-guid: a81f939b0ffc29643a42cf498156b9c4
+guid: 8540f2f53c3954e43a13d653518f8f1e
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: buttonsT_0
-    21300002: buttonsT_1
+  fileIDToRecycleName: {}
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -27,13 +25,13 @@ TextureImporter:
   maxTextureSize: 1024
   textureSettings:
     filterMode: -1
-    aniso: 16
+    aniso: -1
     mipBias: -1
-    wrapMode: 1
+    wrapMode: -1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -44,26 +42,6 @@ TextureImporter:
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites:
-    - name: buttonsT_0
-      rect:
-        serializedVersion: 2
-        x: 11
-        y: 102
-        width: 481
-        height: 100
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: buttonsT_1
-      rect:
-        serializedVersion: 2
-        x: 11
-        y: 0
-        width: 481
-        height: 100
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+    sprites: []
   spritePackingTag: 
   userData: 
