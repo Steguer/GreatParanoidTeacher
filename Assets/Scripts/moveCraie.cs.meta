@@ -2,7 +2,9 @@ fileFormatVersion: 2
 guid: 96edc62158ec11f40adba1a812e284df
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - studentTargeted: {instanceID: 0}
+  - bam: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
