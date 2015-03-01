@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour {
 	public Texture2D cursorTexture;
 	public GameObject objetCraie;
 	public GameObject bam;
+	public int combo = 1;
 	public GameObject bonus;
 	public GameObject malus;
 	
@@ -72,10 +73,11 @@ public class PlayerController : MonoBehaviour {
 				// Check if hit a student
 				if(hit.transform.tag == "Student") {
 					instanciateCraie(hit.transform);
-					
+
 					return hit.transform;
 				}
 			}
+			combo = 1;
 			instanciateCraie(null);
 			//animator.ResetTrigger("Throw");
 
