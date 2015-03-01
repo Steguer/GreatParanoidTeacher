@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour {
 	//********* Public attributs *********
 	public float eventStudentRate = 0.5F;
 	public int redGuyEvent = 10;
+	public float alphaRate = 0.0001f;
 
 	//********* Private attributs *********
 	private float nextStudentEvent = 0.0F;
@@ -21,12 +22,6 @@ public class GameManager : MonoBehaviour {
 	void Update () {
 		checkPlayerStess();
 		eventStudents();
-		GameObject img=GameObject.Find ("Image");
-		Image temp = img.GetComponent<Image> ();
-		//temp.color = new Color (temp.color.r, temp.color.g, temp.color.b, temp.color.a + 100);
-		Color c = temp.color;
-		c.a += 0.001f;
-		temp.color = c;
 	}
 
 	/*
@@ -38,10 +33,21 @@ public class GameManager : MonoBehaviour {
 		float playerStress = player.GetComponent<PlayerController>().playerStress;
 		float stress = playerStress/stressLimit;
 
-		float transparence = (playerStress * 256) / stressLimit;
-		SpriteRenderer sr = GameObject.Find("frame").GetComponent<SpriteRenderer>();
-		Color tmp = new Color(190f, 190f, 190f, 256f);
-		sr.material.color = tmp;
+		// Display stress to screen
+		float transparence = playerStress / stressLimit;
+		GameObject img=GameObject.Find ("Image");
+		Image temp = img.GetComponent<Image> ();
+		Color c = temp.color;
+
+		if(c.a <= transparence) {
+			c.a += alphaRate;
+		}
+		else {
+			c.a -= alphaRate;
+		}
+
+		temp.color = c;
+
 		//GameObject soundGenerator = GameObject.FindGameObjectWithTag("SoundGenerator");
 		//soundGenerator.GetComponent<StressBeats>().stressLevel = stress;
 	}
