@@ -7,7 +7,7 @@ using System.Collections;
 public class StressBeats : MonoBehaviour {
 	private AudioSource beat1, beat2, beat3, beat4, beat5, currentBeat; //fichiers audio et beat actuel
 	public float stressLevel; //niveau de stress récupéré (envoyé par le script qui gère le stress)
-	private float sLevel1 = 0.10f, sLevel2 = 0.20f, sLevel3 = 0.50f, sLevel4 = 0.75f, sLevel5 = 0.90f; //seuils de niveaux de stress pour jouer la musique
+	private int sLevel1 = 2, sLevel2 = 4, sLevel3 = 6, sLevel4 = 8, sLevel5 = 9; //seuils de niveaux de stress pour jouer la musique
 	private bool playBeat;
 
 	// Use this for initialization
@@ -27,6 +27,9 @@ public class StressBeats : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+		//On recupere le stress level du joueur
+		stressLevel = GameObject.Find ("Player").GetComponent<PlayerController>().playerStress;
 
 		playBeat = true;
 		//Niveau de stress en dessous du premier seuil : pas de beat
