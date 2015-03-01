@@ -113,6 +113,13 @@ public class Student : MonoBehaviour {
 			else {
 				GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().playerStress -= decrementStress;
 			}
+
+			if(GameManager.eventStudentRate - GameManager.speedUp < 0.1f) {
+				GameManager.eventStudentRate = 0.1f;
+			}
+			else {
+				GameManager.eventStudentRate -= GameManager.speedUp;
+			}
 			 
 			Debug.Log ("StudentEvilHit");
 			isClickable=false;
