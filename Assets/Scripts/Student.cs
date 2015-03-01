@@ -3,14 +3,16 @@ using System.Collections;
 
 public class Student : MonoBehaviour {
 
-	
-
-	public float Timer;
+	//********* Public attributs *********
 	public int EnrageCountHit = 10;
+	public int incrementStress = 2;
+	public int decrementStress = 1;
+	public int incrementScore = 200;
+	public int decrementScore = 100;
 	public float TimerFail;
-	public int incrementStress = 1;
+	public float Timer;
 	
-
+	//********* Private attributs *********
 	private Animator animator;
 	private bool isClickable = false;
 	private float TimerFailCopy;
@@ -87,6 +89,15 @@ public class Student : MonoBehaviour {
 		if(currentAnimeState.IsName("StudentEvilHit"))
 		if(isClickable){
 			//Augmenter les points ?
+			GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().score += incrementScore;
+			var temp = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().playerStress;
+			if(temp - decrementStress < 0) {
+				GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().playerStress = 0;
+			}
+			else {
+				GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().playerStress -= decrementStress;
+			}
+			 
 			Debug.Log ("StudentEvilHit");
 			isClickable=false;
 		}
@@ -94,6 +105,13 @@ public class Student : MonoBehaviour {
 		if(currentAnimeState.IsName("StudentInnocentHit"))
 		if(isClickable){
 			//Decementer les Points ?
+			var tmp = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().score;
+			if(tmp - decrementScore < 0) {
+				GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().score = 0;
+			}
+			else {
+				GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().score -= decrementScore;
+			}
 			Debug.Log ("StudentInnocentHit");
 			isClickable=false;
 		}
