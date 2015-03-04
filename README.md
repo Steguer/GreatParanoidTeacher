@@ -8,6 +8,7 @@ WonderJam UQAC 02/2015
 
 A little shooting/rhythmic game made for the WonderJam of February with Unity3D.
 
+[Play-it here!](http://corentin-r.github.io/Apps/GPT/test-build-GPT.html) (Windows only, Unity plugin needed =( )
 ##Story
 
 You are a new teacher and you job is to watch out for students atempting to cheat on their mid-term exam!
