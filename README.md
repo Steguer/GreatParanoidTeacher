@@ -12,7 +12,7 @@ A little shooting/rhythmic game made for the WonderJam of February with Unity3D.
 ##Story
 
 You are a new teacher and you job is to watch out for students atempting to cheat on their mid-term exam!
-If you see them not lokking at their own sheet, use your trusted chalk to stop them until the exam is over. But be careful to your own stress too.
+If you see them not looking at their own sheet, use your trusted chalk to stop them until the exam is over. But be careful to your own stress too.
 
 ##Controls
 
